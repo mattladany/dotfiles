@@ -6,11 +6,10 @@ set colorcolumn=80
 
 " Color Settings
 syntax enable
-
+set term=screen-256color
 let g:solarized_termcolors=256
 set background=dark
 colorscheme hybrid "hybrid.vim colors
-"colorscheme solarized "solarized.vim color
 
 " Tabbular settings
 set tabstop=4
@@ -19,21 +18,23 @@ set shiftwidth=4
 set expandtab
 set autoindent
 
+" Search settings
+set smartcase
+set hlsearch
+hi search cterm=NONE ctermfg=black ctermbg=LightGreen
 
 " Statusline settings
 set laststatus=2
-set term=screen-256color
 
 "##############################################################################
 "################################  Mappings  ##################################
 "##############################################################################
 
-" Disabling the arrow keys
+" Disabling the arrow keys when not in Insert mode
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-
 " Escape
 inoremap jk <Esc>
 
@@ -60,6 +61,9 @@ endf
 " Insert
 " TODO: get this to work
 " noremap i :call CheckLength(col('.'))<C-M>
+
+" Turning off the highlighted text
+nnoremap <C-h> :nohl<CR>
 
 " Searching
 inoremap <C-f> <Esc>/
@@ -89,7 +93,6 @@ inoremap <C-O> <End><C-M>
 function! SkipClosing(char)
     return strpart(getline('.'), col('.')-1, 1) == a:char ? "\<Right>" : a:char
 endf
-
 " Semicolons ;
 inoremap <expr> ;   SkipClosing(';')
 
@@ -111,6 +114,7 @@ inoremap <expr> ]   SkipClosing(']')
 " Arrows <>
 inoremap <          <><Left>
 inoremap <expr> >   SkipClosing('>')
+inoremap <<         <<
 
 "TODO: single and double quotes
 
@@ -139,13 +143,16 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'vim-airline/vim-airline' " statusline plugin
+Plug 'vim-airline/vim-airline' " statusline
 Plug 'vim-airline/vim-airline-themes' " statusline color themes
-Plug 'Valloric/YouCompleteMe' " autocomplete plugin
+Plug 'Valloric/YouCompleteMe' " autocomplete
 Plug 'tpope/vim-fugitive' " git integration
 Plug 'sickill/vim-pasta' " fixed indenting of copy/pasting
 Plug 'tomasiser/vim-code-dark' " theme used for vim-airline
 Plug 'scrooloose/nerdtree' " vim file explorer
+Plug 'tpope/vim-obsession' " saving sessions through restart
+Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'vim-syntactic/syntactic'
 "Plug 'edkolev/tmuxline.vim'
 "Plug 'kien/rainbow-parentheses.vim'
 
@@ -161,10 +168,18 @@ let g:airline_symbols.branch = '⭠'
 let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
 
+" Airline settings
 " TODO: Changing the layout for section z of airline
+let g_airline_section_x = "%{ObsessionStatus()}"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'codedark' " theme
+let g:bufferline_echo = 1
 
-" Setting the airline theme
-let g:airline_theme = 'codedark'
+" Ctrlp settings
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = 'find %s -type f'
 
 "##############################################################################
 "#####################  Setting up persistant undo/redo  ######################
