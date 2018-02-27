@@ -31,7 +31,7 @@ alias ll='ls -lh@'
 alias lt='ls -ltrh'
 alias lla='ls -AlhH'
 
-# Miscelaneous
+# Clear
 alias cl='clear'
 alias c='clear'
 
@@ -58,11 +58,9 @@ alias gpush='git push'  # push
 alias sbash='source ~/.bashrc'
 alias sprof='source ~/.bash_profile'
 
-# Ruby aliases
-#alias rvm='source /Users/mattladany/.rvm/scripts/rvm'
 
 # TODO: Get this to work
 #alias tmux-ka='tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill'
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.rvm/bin"

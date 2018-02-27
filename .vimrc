@@ -3,15 +3,17 @@
 " General settings
 set number
 set colorcolumn=80
+set visualbell
 
 " Color Settings
 syntax enable
 set term=screen-256color
-let g:solarized_termcolors=256
+let g:hybrid_custom_term_colors=256
 set background=dark
 colorscheme hybrid "hybrid.vim colors
+"colorscheme solarized "solarized.vim colors
 
-" Tabbular settings
+" Default tabbular settings
 set tabstop=4
 set softtabstop=-1
 set shiftwidth=4
@@ -35,32 +37,34 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
 " Escape
 inoremap jk <Esc>
 
 " Visual from Insert mode
 inoremap vv <Esc>v
 
-" Comment/uncomment selected lines
-vnoremap <silent> # :'<,'>norm i#<CR>
-vnoremap <silent> -# :s/^#//<CR>:noh<CR>
-vnoremap <silent> " :'<,'>norm i"<CR>
-vnoremap <silent> -" :s/^"//<CR>:noh<CR>
-vnoremap <silent> / :'<,'>norm i//<CR>
+"***** Comment/uncomment selected lines *****
+
+" Ruby, Bash, etc. comments (#)
+vnoremap <silent> #   :'<,'>norm i#<CR>
+vnoremap <silent> -#  :s/^#//<CR>:noh<CR>
+
+" Vim comments (")
+vnoremap <silent> "   :'<,'>norm i"<CR>
+vnoremap <silent> -"  :s/^"//<CR>:noh<CR>
+
+" Haskell comments (--)
+vnoremap <silent> --  :'<,'>norm i--<CR>
+vnoremap <silent> --- :s/^--//<CR>:noh<CR>
+
+" Java, C, C++, etc. comments (//)
+vnoremap <silent> /   :'<,'>norm i//<CR>
+"vnoremap <silent> -/ :s/^////<CR>:noh<CR> "TODO: get remove // to work
 
 " Delete first or first two vals per-line in the selected text
 vnoremap <silent> nx :'<,'>norm x<CR>
 vnoremap <silent> nxx :'<,'>norm xx<CR>
-
-" Function to move the cursor one character to the right, if the cursor
-"   is on the last character of the line when entering Insert mode.
-function! CheckLength(index)
-    return strlen(getline('.'))-1 == a:index ? "i<Right>" : "i"
-endf
-
-" Insert
-" TODO: get this to work
-" noremap i :call CheckLength(col('.'))<C-M>
 
 " Turning off the highlighted text
 nnoremap <C-h> :nohl<CR>
@@ -78,9 +82,6 @@ inoremap <C-D> <Esc><C-D>i
 inoremap <C-U> <Esc><C-U>i
 
 "********** Intellij conveniences **********
-
-"Java
-inoremap sout<CR> System.out.println();<Left><Left>
 
 " Tabbing and Entering
 inoremap <S-Tab> <C-D>
@@ -111,11 +112,6 @@ inoremap <expr> )   SkipClosing(')')
 inoremap [          []<Left>
 inoremap <expr> ]   SkipClosing(']')
 
-" Arrows <>
-inoremap <          <><Left>
-inoremap <expr> >   SkipClosing('>')
-inoremap <<         <<
-
 "TODO: single and double quotes
 
 " Avoiding mis-typing :wq and :w
@@ -123,12 +119,6 @@ command! W w
 command! Wq wq
 command! WQ wq
 command! WQ wq
-
-" PlugInstall shortcut
-command! PI PlugInstall
-
-" NERDTree shortcut
-command! NT NERDTree
 
 "##############################################################################
 "#################################  Plugins  ##################################
@@ -151,10 +141,8 @@ Plug 'sickill/vim-pasta' " fixed indenting of copy/pasting
 Plug 'tomasiser/vim-code-dark' " theme used for vim-airline
 Plug 'scrooloose/nerdtree' " vim file explorer
 Plug 'tpope/vim-obsession' " saving sessions through restart
+Plug 'vim-syntastic/syntastic' " static syntax checking
 Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'vim-syntactic/syntactic'
-"Plug 'edkolev/tmuxline.vim'
-"Plug 'kien/rainbow-parentheses.vim'
 
 call plug#end()
 
@@ -181,6 +169,12 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = 'find %s -type f'
 
+" PlugInstall shortcut
+command! PI PlugInstall
+
+" NERDTree shortcut
+command! NT NERDTree
+
 "##############################################################################
 "#####################  Setting up persistant undo/redo  ######################
 "##############################################################################
@@ -196,3 +190,50 @@ if has('persistent_undo')
     let &undodir = myUndoDir
     set undofile
 endif
+
+"##############################################################################
+"########################### File-specific options  ###########################
+"##############################################################################
+
+if has("autocmd")
+
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+    au!
+
+    autocmd FileType text       call SetTextOptions()
+    autocmd FileType java       call SetJavaOptions()
+    autocmd FileType c,cpp      call SetCandCPPOptions()
+    autocmd FileType ruby       call SetRubyOptions()
+    autocmd FileType html       call SetHTMLOptions()
+    autocmd FileType haskell    call SetHaskellOptions()
+    augroup END
+
+endif " has("autocmd")
+
+function SetRubyOptions()
+    setlocal sw=2 ts=2
+endf
+
+function SetHTMLOptions()
+    setlocal sw=2 ts=2
+    inoremap < <><Left>
+    inoremap <expr> > SkipClosing('>')
+endf
+
+function SetTextOptions()
+    setlocal sw=2 ts=2
+endf
+
+function SetJavaOptions()
+    setlocal sw=4 ts=4
+    inoremap sout<CR> System.out.println();<Left><Left>
+endf
+
+function SetCandCPPOptions()
+    setlocal sw=2 ts=2
+endf
+
+function SetHaskellOptions()
+    setlocal sw=2 ts=2
+endf
