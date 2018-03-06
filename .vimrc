@@ -113,6 +113,12 @@ inoremap [          []<Left>
 inoremap <expr> ]   SkipClosing(']')
 
 "TODO: single and double quotes
+inoremap '          ''<Left>
+inoremap <expr> '   SkipClosing('\'')
+
+inoremap "          ""<Left>
+inoremap <expr> "   SkipClosing('"')
+
 
 " Avoiding mis-typing :wq and :w
 command! W w
@@ -142,6 +148,8 @@ Plug 'tomasiser/vim-code-dark' " theme used for vim-airline
 Plug 'scrooloose/nerdtree' " vim file explorer
 Plug 'tpope/vim-obsession' " saving sessions through restart
 Plug 'vim-syntastic/syntastic' " static syntax checking
+Plug 'neovimhaskell/haskell-vim' " haskell vim settings
+Plug 'vim-scripts/calendar.vim--Matsumoto' " open a vim calendar
 Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
@@ -163,6 +171,16 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'codedark' " theme
 let g:bufferline_echo = 1
 
+" Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " Ctrlp settings
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -174,6 +192,9 @@ command! PI PlugInstall
 
 " NERDTree shortcut
 command! NT NERDTree
+
+" Calendar shortcut
+command! C Calendar
 
 "##############################################################################
 "#####################  Setting up persistant undo/redo  ######################
