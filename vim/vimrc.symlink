@@ -94,6 +94,7 @@ inoremap <C-O> <End><C-M>
 function! SkipClosing(char)
     return strpart(getline('.'), col('.')-1, 1) == a:char ? "\<Right>" : a:char
 endf
+
 " Semicolons ;
 inoremap <expr> ;   SkipClosing(';')
 
@@ -112,10 +113,11 @@ inoremap <expr> )   SkipClosing(')')
 inoremap [          []<Left>
 inoremap <expr> ]   SkipClosing(']')
 
-"TODO: single and double quotes
-inoremap '          ''<Left>
-inoremap <expr> '   SkipClosing('\'')
+"TODO: single quotes
+"inoremap '          ''<Left>
+"inoremap <expr> '   SkipClosing('\'')
 
+" Double quotes "
 inoremap "          ""<Left>
 inoremap <expr> "   SkipClosing('"')
 
