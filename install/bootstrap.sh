@@ -136,27 +136,31 @@ install_dotfiles () {
     link_file "$src" "$dst"
   done
 
-  # installing vim plugins
-  vim +PlugInstall +qall
-
   # sourcing tmux file
   tmux source-file ~/.tmux.conf
 }
 
+install_vim_settings() {
+    vim +PlugInstall +qall
+    cp vim_colors/* ~/.vim/colors/
+    success "installed vim_settings"
+}
+
 setup_gitconfig
 install_dotfiles
+install_vim_settings
 
 # If we're on a Mac, let's install and setup homebrew.
-if [ "$(uname -s)" == "Darwin" ]
-then
-  info "installing dependencies"
-  if source bin/dot | while read -r data; do info "$data"; done
-  then
-    success "dependencies installed"
-  else
-    fail "error installing dependencies"
-  fi
-fi
+#if [ "$(uname -s)" == "Darwin" ]
+#then
+#  info "installing dependencies"
+#  if source bin/dot | while read -r data; do info "$data"; done
+#  then
+#    success "dependencies installed"
+#  else
+#    fail "error installing dependencies"
+#  fi
+#fi
 
 echo ''
 echo '  All installed!'
