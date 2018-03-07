@@ -153,9 +153,6 @@ install_dotfiles () {
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
   done
-
-  # sourcing tmux file
-  tmux source-file ~/.tmux.conf
 }
 
 install_powerline_fonts() {
