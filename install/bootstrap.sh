@@ -128,13 +128,15 @@ link_file () {
 install_needed_applications() {
     info 'installing needed applications'
 
-    if [ "$(uname -s)" == "Darwin" ]
-    then
-        brew install vim tmux curl
-    fi
+    if [ "$(uname -s)" == "Darwin" ]; then
 
-    if [ "$(uname -s)" == "Linux" ]
-    then
+        # install homebrew if not already installed
+        if [ "$(which brew)" == "brew not found" ]; then
+            /usr/bin/ruby -e \
+            "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        fi
+        brew install vim tmux curl
+    elif [ "$(uname -s)" == "Linux" ]; then
         sudo apt-get install vim tmux curl
     fi
 
@@ -164,14 +166,14 @@ install_powerline_fonts() {
 }
 
 install_vim_settings() {
-    info 'installing vim fonts, plugins, colors'
+    info 'installing vim fonts, plugins, and colors'
 
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+    cp  -r vim/colors ~/.vim/
     vim +PlugInstall +qall
     install_powerline_fonts
-    cp  -r vim/colors ~/.vim/
 
     success "installed vim_settings"
 }
