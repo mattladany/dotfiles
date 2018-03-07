@@ -125,6 +125,24 @@ link_file () {
   fi
 }
 
+install_needed_applications() {
+    info 'installing needed applications'
+
+    if [ "$(uname -a)" == "Darwin" ]
+    then
+        brew install vim
+        brew install tmux
+    fi
+
+    if [ "$(uname -a)" == "Linux" ]
+    then
+        sudo apt-get install vim
+        sudo apt-get install tmux
+    fi
+
+    success "vim and tmux installed"
+}
+
 install_dotfiles () {
   info 'installing dotfiles'
 
@@ -146,28 +164,31 @@ install_powerline_fonts() {
     ./install.sh
     cd ..
     rm -rf fonts
-    
+
     success "installed powerline_fonts"
 }
 
 install_vim_settings() {
-    
-    # installing vim-plug
+    info 'installing vim fonts, plugins, colors'
+
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     vim +PlugInstall +qall
     install_powerline_fonts
     cp  -r vim/colors ~/.vim/
-    
+
     success "installed vim_settings"
 }
 
+install_needed_applications
+echo ''
 if [ "$1" != "--skip-git" ]
 then
     setup_gitconfig
 fi
 install_dotfiles
+echo ''
 install_vim_settings
 
 # If we're on a Mac, let's install and setup homebrew.

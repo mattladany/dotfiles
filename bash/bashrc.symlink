@@ -37,9 +37,12 @@ alias c='clear'
 
 # Vim and MacVim locations
 # IMPORTANT: Only valid aliases when on MacOS with MacVim installed
-alias vi='/Applications/MacVim.app/Contents/bin/vim'
-alias vim='/Applications/MacVim.app/Contents/bin/vim'
-alias mvim='/Applications/MacVim.app/Contents/bin/mvim'
+if [ "$(uname -a)" == "Darwin" ]
+then
+    alias vi='/Applications/MacVim.app/Contents/bin/vim'
+    alias vim='/Applications/MacVim.app/Contents/bin/vim'
+    alias mvim='/Applications/MacVim.app/Contents/bin/mvim'
+fi
 
 # Dotfile aliases
 alias bashrc='vi ~/.bashrc'
