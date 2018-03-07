@@ -130,14 +130,12 @@ install_needed_applications() {
 
     if [ "$(uname -s)" == "Darwin" ]
     then
-        brew install vim
-        brew install tmux
+        brew install vim tmux curl
     fi
 
     if [ "$(uname -s)" == "Linux" ]
     then
-        sudo apt-get install vim
-        sudo apt-get install tmux
+        sudo apt-get install vim tmux curl
     fi
 
     success "vim and tmux installed"
