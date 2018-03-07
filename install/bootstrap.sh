@@ -128,13 +128,13 @@ link_file () {
 install_needed_applications() {
     info 'installing needed applications'
 
-    if [ "$(uname -a)" == "Darwin" ]
+    if [ "$(uname -s)" == "Darwin" ]
     then
         brew install vim
         brew install tmux
     fi
 
-    if [ "$(uname -a)" == "Linux" ]
+    if [ "$(uname -s)" == "Linux" ]
     then
         sudo apt-get install vim
         sudo apt-get install tmux
