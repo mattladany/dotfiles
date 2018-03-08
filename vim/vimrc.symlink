@@ -66,7 +66,7 @@ vnoremap <silent> /   :'<,'>norm i//<CR>
 vnoremap <silent> nx :'<,'>norm x<CR>
 vnoremap <silent> nxx :'<,'>norm xx<CR>
 
-" Turning off the highlighted text
+" Unhighlight text
 nnoremap <C-h> :nohl<CR>
 
 " Searching
@@ -75,16 +75,25 @@ noremap <C-f> <Esc>/
 
 " Saving/quiting in insert
 inoremap <C-S> <Esc>:w<CR>i
-inoremap <C-Q> <Esc>:q
+inoremap <C-Q> <Esc>:q<CR>
 
-" Mapping normal mode half-page up and down to insert mode
-inoremap <C-D> <Esc><C-D>i
-inoremap <C-U> <Esc><C-U>i
+" Format code
+inoremap <F2> <Esc>gg=Gi
+noremap <F2> gg=G
+
+" Window navigations
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+" :s to :split
+noremap :s :split
 
 "********** Intellij conveniences **********
 
-" Tabbing and Entering
-inoremap <S-Tab> <C-D>
+" Tabbing and Entering TODO: Figure out how to map <S-Tab> to <C-D> (backtab).
+"inoremap <S-Tab> <Esc><<i<Right>
 inoremap <C-O> <End><C-M>
 
 " ********** Enclosing characters **********
@@ -117,10 +126,9 @@ inoremap <expr> ]   SkipClosing(']')
 "inoremap '          ''<Left>
 "inoremap <expr> '   SkipClosing('\'')
 
-" Double quotes "
+" Double quotes " TODO: Get the first mapping below to work.
 inoremap "          ""<Left>
 inoremap <expr> "   SkipClosing('"')
-
 
 " Avoiding mis-typing :wq and :w
 command! W w
@@ -202,7 +210,7 @@ command! C Calendar
 "#####################  Setting up persistant undo/redo  ######################
 "##############################################################################
 
-" Taken from github.com/folksgl/.dotfiles.git repository
+" Taken from folksgl/.dotfiles.git github repository
 let vimDir = '$HOME/.vim'
 let &runtimepath.=','.vimDir
 if has('persistent_undo')
@@ -220,19 +228,19 @@ endif
 
 if has("autocmd")
 
-    " Put these in an autocmd group, so that we can delete them easily.
-    augroup vimrcEx
-    au!
-
     autocmd FileType text       call SetTextOptions()
     autocmd FileType java       call SetJavaOptions()
     autocmd FileType c,cpp      call SetCandCPPOptions()
     autocmd FileType ruby       call SetRubyOptions()
     autocmd FileType html       call SetHTMLOptions()
     autocmd FileType haskell    call SetHaskellOptions()
-    augroup END
+    autocmd FileType bash,sh    call SetBashOptions()
 
-endif " has("autocmd")
+endif
+
+function SetBashOptions()
+    setlocal sw=2 ts=2
+endf
 
 function SetRubyOptions()
     setlocal sw=2 ts=2
@@ -250,7 +258,22 @@ endf
 
 function SetJavaOptions()
     setlocal sw=4 ts=4
+
+    " Shortcut for the print statement
     inoremap sout<CR> System.out.println();<Left><Left>
+
+    "**** Javadoc comments ****
+
+    " Function.
+    inoremap /**<CR> /**<CR><CR><BS>/<Up><Space>
+    imap jf /**<CR>
+
+    " Class
+    inoremap /**c /**<CR><CR>@author Matt Ladany<CR>@version 1.0<CR>/<Up><Up><Up><Space>
+    imap jc /**c
+
+    " General
+    inoremap /*<Space> /*  */<Left><Left><Left>
 endf
 
 function SetCandCPPOptions()

@@ -72,7 +72,7 @@ link_file () {
       else
 
         user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
-        [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+          [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
         read -n 1 action
 
         case "$action" in
@@ -126,21 +126,21 @@ link_file () {
 }
 
 install_needed_applications() {
-    info 'installing needed applications'
+  info 'installing needed applications'
 
-    if [ "$(uname -s)" == "Darwin" ]; then
+  if [ "$(uname -s)" == "Darwin" ]; then
 
-        # install homebrew if not already installed
-        if [ "$(which brew)" == "brew not found" ]; then
-            /usr/bin/ruby -e \
-            "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        fi
-        brew install vim tmux curl
-    elif [ "$(uname -s)" == "Linux" ]; then
-        sudo apt-get install vim tmux curl
+    # install homebrew if not already installed
+    if [ "$(which brew)" == "brew not found" ]; then
+      /usr/bin/ruby -e \
+        "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     fi
+    brew install vim tmux curl
+  elif [ "$(uname -s)" == "Linux" ]; then
+    sudo apt-get install vim tmux curl
+  fi
 
-    success "vim and tmux installed"
+  success "vim and tmux installed"
 }
 
 install_dotfiles () {
@@ -156,33 +156,33 @@ install_dotfiles () {
 }
 
 install_powerline_fonts() {
-    git clone https://github.com/powerline/fonts.git --depth=1
-    cd fonts
-    ./install.sh
-    cd ..
-    rm -rf fonts
+  git clone https://github.com/powerline/fonts.git --depth=1
+  cd fonts
+  ./install.sh
+  cd ..
+  rm -rf fonts
 
-    success "installed powerline_fonts"
+  success "installed powerline_fonts"
 }
 
 install_vim_settings() {
-    info 'installing vim fonts, plugins, and colors'
+  info 'installing vim fonts, plugins, and colors'
 
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    cp  -r vim/colors ~/.vim/
-    vim +PlugInstall +qall
-    install_powerline_fonts
+  cp  -r vim/colors ~/.vim/
+  vim +PlugInstall +qall
+  install_powerline_fonts
 
-    success "installed vim_settings"
+  success "installed vim_settings"
 }
 
 install_needed_applications
 echo ''
 if [ "$1" != "--skip-git" ]
 then
-    setup_gitconfig
+  setup_gitconfig
 fi
 install_dotfiles
 echo ''
