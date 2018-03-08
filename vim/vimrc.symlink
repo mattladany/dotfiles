@@ -90,6 +90,9 @@ noremap <C-l> <C-w>l
 " :s to :split
 noremap :s :split
 
+" Mapping ; to :
+nmap ; :
+
 "********** Intellij conveniences **********
 
 " Tabbing and Entering TODO: Figure out how to map <S-Tab> to <C-D> (backtab).
@@ -130,8 +133,8 @@ inoremap <expr> ]   SkipClosing(']')
 inoremap "          ""<Left>
 inoremap <expr> "   SkipClosing('"')
 
-" Avoiding mis-typing :wq and :w
-command! W w
+" Avoiding mis-typing :wq, :w, and :
+command! W  w
 command! Wq wq
 command! WQ wq
 command! WQ wq
