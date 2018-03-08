@@ -56,11 +56,11 @@ alias gitc='git commit' # commit
 alias gitaa='git add .' # add all
 alias gits='git status' # status
 alias gpush='git push'  # push
+alias gitac='git add . && git commit' # add all and commit
 
 # Quick way of re-sourcing the .bashrc and .bash_profile files
 alias sbash='source ~/.bashrc'
 alias sprof='source ~/.bash_profile'
-
 
 # TODO: Get this to work
 #alias tmux-ka='tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill'
