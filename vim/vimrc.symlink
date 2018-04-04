@@ -8,10 +8,13 @@ set visualbell
 " Color Settings
 syntax enable
 set term=screen-256color
-let g:hybrid_custom_term_colors=256
 set background=dark
+let g:hybrid_custom_term_colors=256
 colorscheme hybrid "hybrid.vim colors
+"let g:solarized_termcolors=256
 "colorscheme solarized "solarized.vim colors
+
+"function SetColorScheme()
 
 " Default tabbular settings
 set tabstop=4
@@ -31,12 +34,6 @@ set laststatus=2
 "##############################################################################
 "################################  Mappings  ##################################
 "##############################################################################
-
-" Disabling the arrow keys when not in Insert mode
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
 
 " Escape
 inoremap jk <Esc>
@@ -88,7 +85,7 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 " :s to :split
-noremap :s :split
+noremap :s<Space> :split<Space>
 
 " Mapping ; to :
 nmap ; :
@@ -231,14 +228,14 @@ endif
 
 if has("autocmd")
 
-    autocmd FileType text       call SetTextOptions()
-    autocmd FileType java       call SetJavaOptions()
-    autocmd FileType c,cpp      call SetCandCPPOptions()
-    autocmd FileType ruby       call SetRubyOptions()
-    autocmd FileType html       call SetHTMLOptions()
-    autocmd FileType haskell    call SetHaskellOptions()
-    autocmd FileType bash,sh    call SetBashOptions()
-    autocmd FileType conf,vim   call SetIndentFour()
+    autocmd FileType text           call SetTextOptions()
+    autocmd FileType java           call SetJavaOptions()
+    autocmd FileType c,cpp          call SetCandCPPOptions()
+    autocmd FileType ruby           call SetRubyOptions()
+    autocmd FileType html,xml,xslt  call SetMarkupOptions()
+    autocmd FileType haskell        call SetFunctionalPLOptions()
+    autocmd FileType bash,sh        call SetBashOptions()
+    autocmd FileType conf,vim       call SetIndentFour()
 
 endif
 
@@ -258,7 +255,7 @@ function SetRubyOptions()
     call SetIndentTwo()
 endf
 
-function SetHTMLOptions()
+function SetMarkupOptions()
     call SetIndentTwo()
     inoremap < <><Left>
     inoremap <expr> > SkipClosing('>')
@@ -273,6 +270,9 @@ function SetJavaOptions()
 
     " Shortcut for the basic java print statement
     inoremap sout<CR> System.out.println();<Left><Left>
+
+    " Shortcut for the main() function
+    imap main<CR> public static void main(String[] args) {<CR>
 
     "**** Javadoc comments ****
     " Function.
@@ -291,6 +291,6 @@ function SetCandCPPOptions()
     call SetIndentTwo()
 endf
 
-function SetHaskellOptions()
+function SetFunctionalPLOptions()
     call SetIndentTwo()
 endf
