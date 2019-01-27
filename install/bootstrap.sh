@@ -69,43 +69,46 @@ link_file () {
 
         skip=true;
 
-      else
-
-        user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
-          [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
-        read -n 1 action
-
-        case "$action" in
-          o )
-            overwrite=true;;
-          O )
-            overwrite_all=true;;
-          b )
-            backup=true;;
-          B )
-            backup_all=true;;
-          s )
-            skip=true;;
-          S )
-            skip_all=true;;
-          * )
-            ;;
-        esac
-
+#      else
+#
+#        user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
+#          [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+#        read -n 1 action
+#
+#        case "$action" in
+#          o )
+#            overwrite=true;;
+#          O )
+#            overwrite_all=true;;
+#          b )
+#            backup=true;;
+#          B )
+#            backup_all=true;;
+#          s )
+#            skip=true;;
+#          S )
+#            skip_all=true;;
+#          * )
+#            ;;
+#        esac
+#
       fi
 
     fi
+#
+#    overwrite=${overwrite:-$overwrite_all}
+#    backup=${backup:-$backup_all}
+#    skip=${skip:-$skip_all}
 
-    overwrite=${overwrite:-$overwrite_all}
-    backup=${backup:-$backup_all}
-    skip=${skip:-$skip_all}
+    overwrite=true
+    backup=false
+    skip=false
 
     if [ "$overwrite" == "true" ]
     then
       rm -rf "$dst"
       success "removed $dst"
-    fi
-
+    fi 
     if [ "$backup" == "true" ]
     then
       mv "$dst" "${dst}.backup"
