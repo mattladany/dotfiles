@@ -59,7 +59,7 @@ vnoremap <silent> --- :s/^--//<CR>:noh<CR>
 vnoremap <silent> /   :'<,'>norm i//<CR>
 "vnoremap <silent> -/ :s/^////<CR>:noh<CR> "TODO: get remove // to work
 
-" Delete first or first two vals per-line in the selected text
+" Delete first or first two chars per-line in the selected text
 vnoremap <silent> nx :'<,'>norm x<CR>
 vnoremap <silent> nxx :'<,'>norm xx<CR>
 
@@ -71,26 +71,32 @@ inoremap <C-f> <Esc>/
 noremap <C-f> <Esc>/
 
 " Saving/quiting in insert
-inoremap <C-S> <Esc>:w<CR>i
-inoremap <C-Q> <Esc>:q<CR>
+inoremap <C-s> <Esc>:w<CR>i
+inoremap <C-q> <Esc>:q<CR>
 
 " Format code
 inoremap <F2> <Esc>gg=Gi
 noremap <F2> gg=G
 
-" Window navigations
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+" Quicker window navigations
+noremap <silent> <C-h> <C-w>h
+noremap <silent> <C-j> <C-w>j
+noremap <silent> <C-k> <C-w>k
+noremap <silent> <C-l> <C-w>l
 
 " :s to :split
 noremap :s<Space> :split<Space>
 
-" Mapping ; to :
+" ; to :
 nmap ; :
 
-"********** Intellij conveniences **********
+inoremap <C-w> <Esc>:w<CR>i
+noremap <C-w> :w<CR>
+
+inoremap <C-q> <Esc>:q<CR>
+noremap <C-q> :q<CR>
+
+"********** Basic conveniences from Intellij **********
 
 " Tabbing and Entering TODO: Figure out how to map <S-Tab> to <C-D> (backtab).
 "inoremap <S-Tab> <Esc><<i<Right>
@@ -127,7 +133,7 @@ inoremap <expr> ]   SkipClosing(']')
 "inoremap <expr> '   SkipClosing('\'')
 
 " Double quotes " TODO: Get the first mapping below to work.
-inoremap "          ""<Left>
+inoremap \"          \"\"<Left>
 inoremap <expr> "   SkipClosing('"')
 
 " Avoiding mis-typing :wq, :w, and :

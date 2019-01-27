@@ -134,10 +134,20 @@ install_needed_applications() {
     if [ "$(which brew)" == "brew not found" ]; then
       /usr/bin/ruby -e \
         "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    else
+      brew update
     fi
-    brew install vim tmux curl
+    if [ "$(brew list | grep curl)" != "curl" ]; then
+      brew install curl
+    fi
+    if [ "$(brew list | grep tmux)" != "tmux" ]; then
+      brew install tmux
+    fi
+    if [ "$(brew list | grep vim)" != "vim" ]; then
+      brew install vim
+    fi
   elif [ "$(uname -s)" == "Linux" ]; then
-    sudo apt-get install vim tmux curl
+    sudo yum install -y vim tmux git curl
   fi
 
   success "vim and tmux installed"
