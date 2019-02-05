@@ -185,7 +185,7 @@ install_vim_settings() {
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
   cp  -r vim/colors ~/.vim/
-  vim +PlugInstall +qall
+  vim  -n +PlugInstall +qall
   install_powerline_fonts
 
   success "installed vim_settings"
