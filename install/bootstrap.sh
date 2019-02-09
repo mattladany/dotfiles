@@ -5,6 +5,21 @@
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 
+# If Linux, try to determine specific distribution
+if [ "$UNAME" == "linux" ]; then
+  # If available, use LSB to identify distribution
+  if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
+    export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'//)
+
+# Otherwise, use release info file
+  else
+    export DISTRO=$(ls -d /etc/[A-Za-z]*[_-][rv]e[lr]* | grep -v "lsb" | cut -d'/' -f3 | cut -d'-' -f1 | cut -d'_' -f1)
+  fi
+fi
+# For everything else (or if above failed), just use generic identifier
+[ "$DISTRO" == "" ] && export DISTRO=$UNAME
+unset UNAME
+
 set -e
 
 echo ''
@@ -108,7 +123,7 @@ link_file () {
     then
       rm -rf "$dst"
       success "removed $dst"
-    fi 
+    fi
     if [ "$backup" == "true" ]
     then
       mv "$dst" "${dst}.backup"
@@ -156,6 +171,17 @@ install_needed_applications() {
   success "vim and tmux installed"
 }
 
+verify_dependencies () {
+  info 'verifying dependencies'
+
+  if ![ command -v curl ] || ![ command -v vim ] || ![ command -v tmux ] || ![ command -v git ]; then
+    fail "Missing dependencies. Please make sure you have curl git vim and tmux installed."
+  fi
+
+  success "all dependencies installed"
+
+}
+
 install_dotfiles () {
   info 'installing dotfiles'
 
@@ -191,7 +217,8 @@ install_vim_settings() {
   success "installed vim_settings"
 }
 
-install_needed_applications
+#install_needed_applications
+verify_dependencies
 echo ''
 if [ "$1" != "--skip-git" ]
 then
