@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-#
-# bootstrap installs things.
+#!/bin/bash
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
@@ -174,12 +172,12 @@ install_needed_applications() {
 verify_dependencies () {
   info 'verifying dependencies'
 
-  if ![ command -v curl ] || ![ command -v vim ] || ![ command -v tmux ] || ![ command -v git ]; then
+  if ! [ -x "$(command -v curl)" ] || ! [ -x "$(command -v vim)" ] || ! [ -x "$(command -v tmux)" ] && ! [ "$(command -v git)" ]; then
     fail "Missing dependencies. Please make sure you have curl git vim and tmux installed."
+    exit 1
   fi
 
   success "all dependencies installed"
-
 }
 
 install_dotfiles () {
