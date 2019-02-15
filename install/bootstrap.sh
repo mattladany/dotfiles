@@ -215,6 +215,14 @@ install_vim_settings() {
   success "installed vim_settings"
 }
 
+install_tmux_plugins() {
+  mkdir ~/.tmux/plugins/
+  cd ~/.tmux/plugins/
+  git clone https://github.com/tmux-plugins/tpm.git
+  info 'installing tmux plugins'
+  ~/.tmux/plugins/tpm/bin/install_plugins
+}
+
 #install_needed_applications
 verify_dependencies
 echo ''
@@ -225,6 +233,8 @@ fi
 install_dotfiles
 echo ''
 install_vim_settings
+echo ''
+install_tmux_plugins
 
 # If we're on a Mac, let's install and setup homebrew.
 #if [ "$(uname -s)" == "Darwin" ]
