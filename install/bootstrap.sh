@@ -216,7 +216,7 @@ install_vim_settings() {
 }
 
 install_tmux_plugins() {
-  mkdir ~/.tmux/plugins/
+  mkdir -p ~/.tmux/plugins/
   cd ~/.tmux/plugins/
   git clone https://github.com/tmux-plugins/tpm.git
   info 'installing tmux plugins'
