@@ -250,3 +250,4 @@ install_tmux_plugins
 
 echo ''
 echo '  All installed!'
+exit 0
