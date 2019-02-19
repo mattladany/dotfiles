@@ -52,6 +52,8 @@ bind -r > select-window -n
 set -g @plugin 'seebi/tmux-colors-solarized'    # colors
 set -g @plugin 'tmux-plugins/tmux-sidebar'      # directory sidebar
 set -g @plugin 'tmux-plugins/tmux-cpu'          # cpu statistics
+set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'tmux-plugins/tmux-net-speed'
 set -g @plugin 'tmux-plugins/tmux-resurrect'    # restore sesssions through system restart
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 

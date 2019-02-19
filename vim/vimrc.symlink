@@ -7,14 +7,12 @@ set visualbell
 
 " Color Settings
 syntax enable
-set term=screen-256color
+"set term=screen-256color
 set background=dark
 let g:hybrid_custom_term_colors=256
 colorscheme hybrid "hybrid.vim colors
 "let g:solarized_termcolors=256
 "colorscheme solarized "solarized.vim colors
-
-"function SetColorScheme()
 
 " Default tabbular settings
 set tabstop=4
@@ -167,7 +165,7 @@ Plug 'tpope/vim-obsession' " saving sessions through restart
 Plug 'vim-syntastic/syntastic' " static syntax checking
 Plug 'neovimhaskell/haskell-vim' " haskell vim settings
 Plug 'vim-scripts/calendar.vim--Matsumoto' " open a vim calendar
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tmux-plugins/vim-tmux' " .tmux.conf syntax highlighting and shortcuts
 
 call plug#end()
 
