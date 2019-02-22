@@ -42,24 +42,24 @@ inoremap vv <Esc>v
 "***** Comment/uncomment selected lines *****
 
 " Ruby, Bash, etc. comments (#)
-vnoremap <silent> #   :'<,'>norm i#<CR>
+vnoremap <silent> #   :norm i#<CR>
 vnoremap <silent> -#  :s/^#//<CR>:noh<CR>
 
 " Vim comments (")
-vnoremap <silent> "   :'<,'>norm i"<CR>
+vnoremap <silent> "   :norm i"<CR>
 vnoremap <silent> -"  :s/^"//<CR>:noh<CR>
 
 " Haskell comments (--)
-vnoremap <silent> --  :'<,'>norm i--<CR>
+vnoremap <silent> --  :norm i--<CR>
 vnoremap <silent> --- :s/^--//<CR>:noh<CR>
 
 " Java, C, C++, etc. comments (//)
-vnoremap <silent> /   :'<,'>norm i//<CR>
+vnoremap <silent> /   :norm i//<CR>
 "vnoremap <silent> -/ :s/^////<CR>:noh<CR> "TODO: get remove // to work
 
 " Delete first or first two chars per-line in the selected text
-vnoremap <silent> nx :'<,'>norm x<CR>
-vnoremap <silent> nxx :'<,'>norm xx<CR>
+vnoremap <silent> nx :norm x<CR>
+vnoremap <silent> nxx :norm xx<CR>
 
 " Unhighlight text
 nnoremap <C-h> :nohl<CR>
