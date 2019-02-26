@@ -205,7 +205,7 @@ main () {
   fi
   install_dotfiles
   echo ''
-  install_vim_settings
+  install_vim_plugins
   echo ''
   install_powerline_fonts
   echo ''
