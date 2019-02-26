@@ -9,6 +9,7 @@ These are the configuration and customization files I use for the terminal when 
 * _git (version >= 2.17.2)_
 * _tmux (version >= 2.8)_
 * _curl (version >= 7.54.0)_
+* On MacOS: _homebrew (version >= 2.0.1)_
 
 __Note:__ These dotfiles may work with versions older than the ones provided (especially curl), but these are the versions I am currently using.
 
