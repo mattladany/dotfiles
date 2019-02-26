@@ -205,11 +205,16 @@ main () {
   fi
   install_dotfiles
   echo ''
-  install_vim_plugins
-  echo ''
-  install_powerline_fonts
-  echo ''
-  install_tmux_plugins
+  if ping -c 1 8.8.8.8 &> /dev/null
+  then
+    install_vim_plugins
+    echo ''
+    install_powerline_fonts
+    echo ''
+    install_tmux_plugins
+  else
+    fail 'No internet. Not installing plugins or fonts.'
+  fi
   echo ''
   echo '  All installed!'
   exit 0
