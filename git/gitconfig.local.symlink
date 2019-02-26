@@ -1,5 +1,0 @@
-[user]
-        name = Matt Ladany
-        email = matt@va-a.com
-[credential]
-        helper = osxkeychain
