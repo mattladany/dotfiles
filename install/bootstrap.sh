@@ -5,6 +5,7 @@ DOTFILES_ROOT=$(pwd -P)
 
 # If Linux, try to determine specific distribution
 if [ "$UNAME" == "linux" ]; then
+
   # If available, use LSB to identify distribution
   if [ -f /etc/lsb-release -o -d /etc/lsb-release.d ]; then
     export DISTRO=$(lsb_release -i | cut -d: -f2 | sed s/'^\t'//)
@@ -141,34 +142,6 @@ link_file () {
   fi
 }
 
-install_needed_applications() {
-  info 'installing needed applications'
-
-  if [ "$(uname -s)" == "Darwin" ]; then
-
-    # install homebrew if not already installed
-    if [ "$(which brew)" == "brew not found" ]; then
-      /usr/bin/ruby -e \
-        "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    else
-      brew update
-    fi
-    if [ "$(brew list | grep curl)" != "curl" ]; then
-      brew install curl
-    fi
-    if [ "$(brew list | grep tmux)" != "tmux" ]; then
-      brew install tmux
-    fi
-    if [ "$(brew list | grep vim)" != "vim" ]; then
-      brew install vim
-    fi
-  elif [ "$(uname -s)" == "Linux" ]; then
-    sudo yum install -y vim tmux git curl
-  fi
-
-  success "vim and tmux installed"
-}
-
 verify_dependencies () {
   info 'verifying dependencies'
 
@@ -199,10 +172,10 @@ install_powerline_fonts() {
   cd ..
   rm -rf fonts
 
-  success "installed powerline_fonts"
+  success "installed powerline fonts"
 }
 
-install_vim_settings() {
+install_vim_plugins() {
   info 'installing vim fonts, plugins, and colors'
 
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -210,9 +183,8 @@ install_vim_settings() {
 
   cp  -r vim/colors ~/.vim/
   vim  -n +PlugInstall +qall
-  install_powerline_fonts
 
-  success "installed vim_settings"
+  success "installed vim plugins"
 }
 
 install_tmux_plugins() {
@@ -221,33 +193,26 @@ install_tmux_plugins() {
   git clone https://github.com/tmux-plugins/tpm.git
   info 'installing tmux plugins'
   ~/.tmux/plugins/tpm/bin/install_plugins
+  info 'installed tmux plugins'
 }
 
-#install_needed_applications
-verify_dependencies
-echo ''
-if [ "$1" != "--skip-git" ]
-then
+main () {
+  verify_dependencies
+  echo ''
+  if [ "$1" != "--skip-git" ]
+  then
   setup_gitconfig
-fi
-install_dotfiles
-echo ''
-install_vim_settings
-echo ''
-install_tmux_plugins
+  fi
+  install_dotfiles
+  echo ''
+  install_vim_settings
+  echo ''
+  install_powerline_fonts
+  echo ''
+  install_tmux_plugins
+  echo ''
+  echo '  All installed!'
+  exit 0
+}
 
-# If we're on a Mac, let's install and setup homebrew.
-#if [ "$(uname -s)" == "Darwin" ]
-#then
-#  info "installing dependencies"
-#  if source bin/dot | while read -r data; do info "$data"; done
-#  then
-#    success "dependencies installed"
-#  else
-#    fail "error installing dependencies"
-#  fi
-#fi
-
-echo ''
-echo '  All installed!'
-exit 0
+main
