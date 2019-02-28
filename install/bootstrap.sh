@@ -42,7 +42,7 @@ fail () {
 }
 
 setup_gitconfig () {
-  if ! [ -f git/gitconfig.local.symlink ]
+  if ! [ -f git/symlink.gitconfig.local ]
   then
     info 'setup gitconfig'
 
@@ -57,7 +57,7 @@ setup_gitconfig () {
     user ' - What is your github author email?'
     read -e git_authoremail
 
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" ~/repositories/dotfiles/git/gitconfig.local.symlink.example > ~/repositories/dotfiles/git/gitconfig.local.symlink
+    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" ~/repositories/dotfiles/git/symlink.gitconfig.local.example > ~/repositories/dotfiles/git/symlink.gitconfig.local
 
     success 'gitconfig'
   fi

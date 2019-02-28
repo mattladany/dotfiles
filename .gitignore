@@ -6,4 +6,4 @@
 .DS_Store
 
 # git
-gitconfig.local.symlink
+symlink.gitconfig.local
