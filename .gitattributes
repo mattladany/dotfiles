@@ -1,1 +1,3 @@
-vim/colors/ export-ignore
+vim/colors/*        linguist-vendored
+bash/*              linguist-language=Shell
+vim/vimrc.symlink   linguist-languag=Vim script
