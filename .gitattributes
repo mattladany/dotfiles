@@ -1,4 +1,4 @@
 vim/colors/*        linguist-vendored
 *.vimrc             linguist-language=Vimscript
-*.bashrc            linguist--language=Bash
+*.bashrc            linguist--language=Shell
 *.bash_profile      linguist-language=Shell
