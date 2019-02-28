@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # .bashrc by Matt Ladany
 
 # don't put duplicate lines or lines starting with space in the history.

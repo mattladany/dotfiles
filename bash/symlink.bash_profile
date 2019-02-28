@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #.bash_profile by Matt Ladany
 
 # sourcing the .bashrc file if it exists
