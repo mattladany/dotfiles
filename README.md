@@ -1,7 +1,6 @@
 # My Dotfiles
 
-## About
-These are the configuration and customization files I use for the terminal when developing. Files in this repository are symlinked to the user's home (/home/{user}) directory.
+These are my configuration and customization files. Files in this repository are symlinked to the user's home (/home/{user}) directory using the _bootstrap.sh_ script.
 
 ## Dependencies
 * _bash (version >= 3.2)_
