@@ -1,5 +1,5 @@
 vim/colors/**         linguist-vendored
-*.vimrc               linguist-vendored=false linguist-language=vim
+*.vimrc               linguist-language=vim
 *.tmux.conf           linguist-language=Shell
-*.bashrc              linguist-language=Shell
-*.bash_profile        linguist-language=Shell
+#*.bashrc              linguist-language=Shell
+#*.bash_profile        linguist-language=Shell
