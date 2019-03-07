@@ -1,3 +1,4 @@
-vim/colors/**         linguist-vendored
-#*.vimrc               linguist-language=vim
-*.tmux.conf           linguist-language=Shell
+solarized.vim         linguist-vendored
+hybrid.vim            linguist-vendored
+symlink.vimrc         linguist-language=vim
+symlink.tmux.conf     linguist-language=Shell
