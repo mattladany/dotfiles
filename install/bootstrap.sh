@@ -181,8 +181,9 @@ install_vim_plugins() {
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-  cp  -r vim/colors ~/.vim/
-  vim  -n +PlugInstall +qall
+  mkdir -p ~/.vim/colors
+  cp colors/vim-colors/* ~/.vim/colors
+  vim -n +PlugInstall +qall
 
   success "installed vim plugins"
 }
