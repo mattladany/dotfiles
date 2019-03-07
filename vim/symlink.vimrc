@@ -214,12 +214,12 @@ command! C Calendar
 "#####################  Setting up persistant undo/redo  ######################
 "##############################################################################
 
-" Taken from folksgl/.dotfiles.git github repository
 let vimDir = '$HOME/.vim'
 let &runtimepath.=','.vimDir
+
 if has('persistent_undo')
-    let myUndoDir = expand(vimDir . '/undodir')
-    " Create dirs
+    let myUndoDir = expand(vimDir . '/undo')
+
     call system('mkdir ' . vimDir)
     call system('mkdir ' . myUndoDir)
     let &undodir = myUndoDir
