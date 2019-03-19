@@ -7,6 +7,10 @@ if [ -f "$HOME/.bashrc" ] ; then
       source $HOME/.bashrc
 fi
 
-export PATH="/usr/local/sbin:$PATH:/opt/gradle/gradle-5.2.1/bin"
+# setting the PATH environment variable
+export PATH="$PATH:/usr/local/sbin:/opt/gradle/gradle-5.2.1/bin"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# macOS-specific values
+if [ "$(uname -s)" == "Darwin" ]; then
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+fi

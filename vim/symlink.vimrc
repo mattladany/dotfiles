@@ -1,4 +1,8 @@
-" .vimrc by Matt Ladany
+"
+" .vimrc
+"
+" @author Matt Ladany
+" @version 1.0
 
 " General settings
 set number
@@ -62,7 +66,7 @@ vnoremap <silent> nx :norm x<CR>
 vnoremap <silent> nxx :norm xx<CR>
 
 " Unhighlight text
-nnoremap <C-h> :nohl<CR>
+nnoremap <C-/> :nohl<CR>
 
 " Searching
 inoremap <C-f> <Esc>/
@@ -130,8 +134,9 @@ inoremap <expr> ]   SkipClosing(']')
 "inoremap '          ''<Left>
 "inoremap <expr> '   SkipClosing('\'')
 
+
 " Double quotes " TODO: Get the first mapping below to work.
-inoremap \"          \"\"<Left>
+inoremap "          ""<Left>
 inoremap <expr> "   SkipClosing('"')
 
 " Avoiding mis-typing :wq, :w, and :

@@ -37,15 +37,6 @@ alias lla='ls -AlhH'
 alias cl='clear'
 alias c='clear'
 
-# Vim and MacVim locations
-# IMPORTANT: Only valid aliases when on MacOS with MacVim installed
-if [ "$(uname -s)" == "Darwin" ]
-then
-    alias vi='/Applications/MacVim.app/Contents/bin/vim'
-    alias vim='/Applications/MacVim.app/Contents/bin/vim'
-    alias mvim='/Applications/MacVim.app/Contents/bin/mvim'
-fi
-
 # Dotfile aliases
 alias bashrc='vi ~/.bashrc'
 alias bashprof='vi ~/.bash_profile'
@@ -63,9 +54,3 @@ alias gitac='git add . && git commit' # add all and commit
 # Quick way of re-sourcing the .bashrc and .bash_profile files
 alias sbash='source ~/.bashrc'
 alias sprof='source ~/.bash_profile'
-
-# TODO: Get this to work
-#alias tmux-ka='tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill'
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
