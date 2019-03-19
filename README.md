@@ -1,7 +1,7 @@
 # My Dotfiles
 
 [![Build Status](https://travis-ci.com/mattladany/dotfiles.svg?branch=master)](https://travis-ci.com/mattladany/dotfiles)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/ohing504/dotfiles/master/LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/mattladany/dotfiles/master/LICENSE)
 
 These are my configuration and customization files. Files in this repository are symlinked to the user's home (/home/{user}) directory using the _bootstrap.sh_ script.
 
