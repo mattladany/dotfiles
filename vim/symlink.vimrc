@@ -11,14 +11,16 @@ set visualbell
 
 " Color Settings
 syntax enable
-"set term=screen-256color
+if has('mac')
+    set term=screen-256color
+endif
 set background=dark
 let g:hybrid_custom_term_colors=256
 colorscheme hybrid "hybrid.vim colors
 "let g:solarized_termcolors=256
 "colorscheme solarized "solarized.vim colors
 
-" Default tabbular settings
+" Default tab settings
 set tabstop=4
 set softtabstop=-1
 set shiftwidth=4
@@ -162,7 +164,6 @@ Plug 'vim-airline/vim-airline' " statusline
 Plug 'vim-airline/vim-airline-themes' " statusline color themes
 Plug 'zxqfl/tabnine-vim' " autocomplete
 Plug 'tpope/vim-fugitive' " git integration
-Plug 'sickill/vim-pasta' " fixed indenting of copy/pasting
 Plug 'tomasiser/vim-code-dark' " theme used for vim-airline
 Plug 'scrooloose/nerdtree' " vim file explorer
 Plug 'tpope/vim-obsession' " saving sessions through restart
@@ -237,14 +238,14 @@ endif
 
 if has("autocmd")
 
-    autocmd FileType text           call SetTextOptions()
-    autocmd FileType java           call SetJavaOptions()
-    autocmd FileType c,cpp          call SetCandCPPOptions()
-    autocmd FileType ruby           call SetRubyOptions()
-    autocmd FileType html,xml,xslt  call SetMarkupOptions()
-    autocmd FileType haskell        call SetFunctionalPLOptions()
-    autocmd FileType bash,sh        call SetBashOptions()
-    autocmd FileType conf,vim       call SetIndentFour()
+    autocmd FileType text               call SetTextOptions()
+    autocmd FileType java               call SetJavaOptions()
+    autocmd FileType c,cpp              call SetCandCPPOptions()
+    autocmd FileType ruby               call SetRubyOptions()
+    autocmd FileType html,xml,xslt,yml  call SetMarkupOptions()
+    autocmd FileType haskell            call SetFunctionalPLOptions()
+    autocmd FileType bash,sh            call SetBashOptions()
+    autocmd FileType conf,vim           call SetIndentFour()
 
 endif
 
