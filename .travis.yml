@@ -3,6 +3,8 @@ language: bash
 os: osx
 
 before_script:
+  - sudo chmod +x test/setup.sh
+  - sudo chmod +x install/bootstrap.sh
   - ./test/setup.sh
   
 script:
