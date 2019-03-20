@@ -1,0 +1,9 @@
+language: bash
+
+os: osx
+
+before_script:
+  - ./test/setup.sh
+  
+script:
+  - ./install/bootstrap.sh
