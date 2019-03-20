@@ -8,4 +8,4 @@ before_script:
   - ./test/setup.sh
   
 script:
-  - "printf 'O\n' | install/bootstrap.sh --skip-git"
+  - printf 'O\n' | install/bootstrap.sh --skip-git
