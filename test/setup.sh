@@ -11,16 +11,23 @@ set -e
 if [[ "$(uname -s)" == "Darwin" ]]; then
   [ -z "$(which brew)" ] &&
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    
-  echo 'Updating Homebrew'
+  
+  echo -e '------------------------'
+  echo -e 'Updating Homebrew'
+  echo -e '------------------------'
+
   brew update
   
-  echo 'Installing vim and tmux'
-  brew install vim && brew install macvim
-  brew link macvim
+  echo -e '------------------------'
+  echo -e 'Installing vim and tmux'
+  echo -e '------------------------'
+  
+  brew install macvim
   brew install tmux
-
+  
+  echo -e '------------------------'
   echo 'All dependencies installed'
+  echo -e '------------------------'
 
 # TODO: linux testing
 # elif [[ "$(uname -s)" == "Linux" ]]; then
