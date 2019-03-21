@@ -2,10 +2,15 @@ language: bash
 
 os: osx
 
+addons:
+  homebrew:
+    packages:
+    - macvim
+    - tmux
+
 before_script:
   - sudo chmod +x test/setup.sh
   - sudo chmod +x install/bootstrap.sh
-  - ./test/setup.sh
   
 script:
   - printf 'O\n' | install/bootstrap.sh --skip-git
