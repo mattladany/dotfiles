@@ -9,7 +9,6 @@ addons:
     - tmux
 
 before_script:
-  - sudo chmod +x test/setup.sh
   - sudo chmod +x install/bootstrap.sh
   
 script:
