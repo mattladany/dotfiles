@@ -82,9 +82,9 @@ inoremap <C-q> <Esc>:q<CR>
 inoremap <F2> <Esc>gg=Gi
 noremap <F2> gg=G
 
-" Quicker window navigations
+" Quicker window navigations (Note: <C-j> gets overridden by my .tmux.conf's prefix)
 noremap <silent> <C-h> <C-w>h
-noremap <silent> <C-j> <C-w>j
+noremap <silent> <C-j> <C-w>j 
 noremap <silent> <C-k> <C-w>k
 noremap <silent> <C-l> <C-w>l
 
@@ -93,18 +93,6 @@ noremap :s<Space> :split<Space>
 
 " ; to :
 nmap ; :
-
-inoremap <C-w> <Esc>:w<CR>i
-noremap <C-w> :w<CR>
-
-inoremap <C-q> <Esc>:q<CR>
-noremap <C-q> :q<CR>
-
-"********** Basic conveniences from Intellij **********
-
-" Tabbing and Entering TODO: Figure out how to map <S-Tab> to <C-D> (backtab).
-"inoremap <S-Tab> <Esc><<i<Right>
-inoremap <C-O> <End><C-M>
 
 " ********** Enclosing characters **********
 " TODO: when there's only (), <>, etc., and you backspace (, delete both.
@@ -240,7 +228,7 @@ if has("autocmd")
 
     autocmd FileType text               call SetTextOptions()
     autocmd FileType java               call SetJavaOptions()
-    autocmd FileType c,cpp              call SetCandCPPOptions()
+    autocmd FileType c,cpp,rs            call SetSystemOptions()
     autocmd FileType ruby               call SetRubyOptions()
     autocmd FileType html,xml,xslt,yml  call SetMarkupOptions()
     autocmd FileType haskell            call SetFunctionalPLOptions()
