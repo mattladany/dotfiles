@@ -54,3 +54,8 @@ alias gitac='git add . && git commit' # add all and commit
 # Quick way of re-sourcing the .bashrc and .bash_profile files
 alias sbash='source ~/.bashrc'
 alias sprof='source ~/.bash_profile'
+
+# Unique bash history for tmux panes
+if [[ $TMUX_PANE ]]; then
+  HISTFILE=$HOME/.bash_history_tmux_${TMUX_PANE:1}
+fi
