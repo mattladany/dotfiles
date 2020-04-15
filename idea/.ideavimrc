@@ -1,0 +1,100 @@
+"
+" .ideavimrc
+"
+" @author Matt Ladany
+" @version 1.0
+
+
+" Default tab settings
+set tabstop=4
+set softtabstop=-1
+set shiftwidth=4
+set expandtab
+set autoindent
+
+"##############################################################################
+"################################  Mappings  ##################################
+"##############################################################################
+
+" Escape
+inoremap jk <Esc>
+
+" Visual from Insert mode
+inoremap vv <Esc>v
+
+"***** Comment/uncomment selected lines *****
+
+" Ruby, Bash, etc. comments (#)
+vnoremap <silent> #   :norm i#<CR>
+vnoremap <silent> -#  :s/^#//<CR>:noh<CR>
+
+" Vim comments (")
+vnoremap <silent> "   :norm i"<CR>
+vnoremap <silent> -"  :s/^"//<CR>:noh<CR>
+
+" Haskell comments (--)
+vnoremap <silent> --  :norm i--<CR>
+vnoremap <silent> --- :s/^--//<CR>:noh<CR>
+
+" Java, C, C++, etc. comments (//)
+vnoremap <silent> /   :norm i//<CR>
+"vnoremap <silent> -/ :s/^////<CR>:noh<CR> "TODO: get remove // to work
+
+" Delete first or first two chars per-line in the selected text
+vnoremap <silent> nx :norm x<CR>
+vnoremap <silent> nxx :norm xx<CR>
+
+" Unhighlight text
+nnoremap <C-/> :nohl<CR>
+
+" Searching
+inoremap <C-f> <Esc>/
+noremap <C-f> <Esc>/
+
+" Saving/quiting in insert
+inoremap <C-s> <Esc>:w<CR>i
+inoremap <C-q> <Esc>:q<CR>
+
+" Format code
+inoremap <F2> <Esc>gg=Gi
+noremap <F2> gg=G
+
+" Quicker window navigations
+noremap <silent> <C-h> <C-w>h
+noremap <silent> <C-j> <C-w>j
+noremap <silent> <C-k> <C-w>k
+noremap <silent> <C-l> <C-w>l
+
+" :s to :split
+noremap :s<Space> :split<Space>
+
+" ; to :
+nmap ; :
+
+inoremap <C-w> <Esc>:w<CR>i
+noremap <C-w> :w<CR>
+
+inoremap <C-q> <Esc>:q<CR>
+noremap <C-q> :q<CR>
+
+" Avoiding mis-typing :wq, :w, and :
+command! W  w
+command! Wq wq
+command! WQ wq
+command! WQ wq
+
+"##############################################################################
+"#####################  Setting up persistant undo/redo  ######################
+"##############################################################################
+
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
+if has('persistent_undo')
+    let myUndoDir = expand(vimDir . '/undo')
+
+    call system('mkdir ' . vimDir)
+    call system('mkdir ' . myUndoDir)
+    let &undodir = myUndoDir
+    set undofile
+endif
