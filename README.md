@@ -23,5 +23,6 @@ cd dotfiles
 ```
 
 ## To Do's
+* Ansible-ize this to avoid silly script issues
 * Cross-platform reliability (Mac, Arch, Centos, Ubuntu, etc.).
 * Research and display a more accurate version range.
