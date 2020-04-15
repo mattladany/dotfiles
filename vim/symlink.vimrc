@@ -39,6 +39,9 @@ hi search cterm=NONE ctermfg=black ctermbg=LightGreen
 " Statusline settings
 set laststatus=2
 
+" Backspace
+set backspace=indent,eol,start
+
 " }}}
 " ==============================================================================
 " Mappings {{{
@@ -89,7 +92,7 @@ noremap <F2> gg=G
 
 " Quicker window navigations (Note: <C-j> gets overridden by my .tmux.conf's prefix)
 noremap <silent> <C-h> <C-w>h
-noremap <silent> <C-j> <C-w>j 
+noremap <silent> <C-j> <C-w>j
 noremap <silent> <C-k> <C-w>k
 noremap <silent> <C-l> <C-w>l
 
@@ -161,10 +164,11 @@ Plug 'tpope/vim-fugitive' " git integration
 Plug 'tomasiser/vim-code-dark' " theme used for vim-airline
 Plug 'scrooloose/nerdtree' " vim file explorer
 Plug 'tpope/vim-obsession' " saving sessions through restart
-Plug 'vim-syntastic/syntastic' " static syntax checking
+"Plug 'vim-syntastic/syntastic' " static syntax checking
 Plug 'neovimhaskell/haskell-vim' " haskell vim settings
 Plug 'vim-scripts/calendar.vim--Matsumoto' " open a vim calendar
 Plug 'tmux-plugins/vim-tmux' " .tmux.conf syntax highlighting and shortcuts
+Plug 'vim-latex/vim-latex' " latex vim syntax highlighting
 
 call plug#end()
 
@@ -190,10 +194,10 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 " Ctrlp settings
 let g:ctrlp_map = '<c-p>'

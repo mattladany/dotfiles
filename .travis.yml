@@ -10,6 +10,6 @@ addons:
 
 before_script:
   - sudo chmod +x install/bootstrap.sh
-  
+
 script:
   - printf 'O\n' | install/bootstrap.sh --skip-git
